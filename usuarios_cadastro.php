@@ -17,11 +17,12 @@ if (isset($_GET['edit'])) {
 <body>
     <script src="js/main.js"></script>
     <h2>Cadastro de Usuários</h2>
+    <div class="container mt-3">
     <form method="POST" action="">
         <input type="hidden" id="id" name="id" value="<?php echo $userToEdit['id'] ?? ''; ?>">
         
-        <div class="form-group input">
-        <label for="nome">Nome:</label>
+        <div class="mb-3 mt-3">
+        <label for="nome" class="form-label">Nome:</label>
         <input type="text" id="nome" class="form-control" name="nome" value="<?php echo $userToEdit['nome'] ?? ''; ?>" required><br><br>
         </div>
 
@@ -43,8 +44,9 @@ if (isset($_GET['edit'])) {
         <button type="submit" class="btn btn-primary" name="update">Atualizar</button>
         <button type="button" class="btn btn-outline-info" onclick="clearForm()">Novo</button>
     </form>
-
+    </div>
     <h2>Usuários Cadastrados</h2>
+
     <table class= "table" border="1">
         <tr class= "table-primary">
             <th>ID</th>
@@ -67,7 +69,6 @@ if (isset($_GET['edit'])) {
             </tr>
         <?php endforeach; ?>
     </table>
-
     <?php include 'footer.php';?>
    
 </body>
