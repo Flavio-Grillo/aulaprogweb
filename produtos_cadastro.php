@@ -3,7 +3,7 @@ include 'produtos_controller.php';
 include 'header.php';
 
 //Pega todos os usuários para preencher os dados da tabela
-$product = getProducts();
+$products = getProducts();
 
 //Variável que guarda o ID do usuário que será editado
 $productToEdit = null;
@@ -38,22 +38,22 @@ if (isset($_GET['edit'])) {
 
         <div class="form-group">
         <label for="text">Modelo:</label>
-        <input type="text" class="form-control" id="modelo" name="modelo" required><br><br>
+        <input type="text" class="form-control" id="modelo" name="modelo"  value="<?php echo $productToEdit['modelo'] ?? ''; ?>" required><br><br>
         </div>
 
         <div class="form-group">
         <label for="text">Valor Unitario:</label>
-        <input type="text" class="form-control" id="valorunitario" name="valorunitario" required><br><br>
+        <input type="text" class="form-control" id="valorunitario" name="valorunitario"  value="<?php echo $productToEdit['valorunitario'] ?? ''; ?>" required><br><br>
         </div>
 
         <div class="form-group">
         <label for="senha">Categoria:</label>
-        <input type="text" class="form-control" id="categoria" name="categoria" required><br><br>
+        <input type="text" class="form-control" id="categoria" name="categoria"  value="<?php echo $productToEdit['categoria'] ?? ''; ?>" required><br><br>
         </div>
 
         <div class="form-group">
-        <label for="text">Url Img:</label>
-        <input type="text" class="form-control" id="url_img" name="url_img" required><br><br>
+        <label for="url_img">Url Img:</label>
+        <input type="text" class="form-control" id="url_img" name="url_img"  value="<?php echo $productToEdit['url_img'] ?? ''; ?>" required><br><br>
         </div>
 
         <button type="submit" class="btn btn-success" name="save">Salvar</button>
@@ -61,11 +61,10 @@ if (isset($_GET['edit'])) {
         <button type="button" class="btn btn-outline-info" onclick="clearForm()">Novo</button>
     </form>
     </div>
-    <h2>Usuários Cadastrados</h2>
+    <h2>Produtos Cadastrados</h2>
 
     <table class= "table" border="1">
         <tr class= "table-primary">
-            <th>ID</th>
             <th>Nome</th>
             <th>Descrição</th>
             <th>Marca</th>
@@ -75,22 +74,21 @@ if (isset($_GET['edit'])) {
             <th>editar ou excluir</th>
         </tr>
         <!--Faz um loop FOR no resultset de usuários e preenche a tabela-->
-        <?php foreach ($product as $products): ?>
+        <?php foreach ($products as $product): ?>
             <tr>
-                <td><?php echo $products['nome']; ?></td>
-                <td><?php echo $products['descricao']; ?></td>
-                <td><?php echo $products['marca']; ?></td>
-                <td><?php echo $products['modelo']; ?></td>
-                <td><?php echo $products['valorunitario']; ?></td>
-                <td><?php echo $products['url_img']; ?></td>
+                <td><?php echo $product['nome']; ?></td>
+                <td><?php echo $product['descricao']; ?></td>
+                <td><?php echo $product['marca']; ?></td>
+                <td><?php echo $product['modelo']; ?></td>
+                <td><?php echo $product['valorunitario']; ?></td>
+                <td><?php echo $product['url_img']; ?></td>
                 <td>
-                    <a href="?edit=<?php echo $products['id']; ?>">Editar</a>
-                    <a href="?delete=<?php echo $products['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
+                    <a href="?edit=<?php echo $product['id']; ?>">Editar</a>
+                    <a href="?delete=<?php echo $product['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
                 </td>
             </tr>
         <?php endforeach; ?>
     </table>
     <?php include 'footer.php';?>
-   
 </body>
 </html>
